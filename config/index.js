@@ -31,7 +31,7 @@ module.exports = {
 
 		proxyTable: {
 			'/api': {
-				target: 'https://github.com/cinoliu/ceshi/blob/master',
+				target: 'https://raw.githubusercontent.com/cinoliu/ceshi/master/',
 				changeOrigin: true,
 				pathRewrite: {
 					'^/api': '/'

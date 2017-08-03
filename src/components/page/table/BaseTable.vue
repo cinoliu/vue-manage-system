@@ -170,8 +170,8 @@
 			}
 		},
 		created() {
-			//            this.getData();
-			this.getUser();
+		          this.getData();
+			
 		},
 		computed: {
 			data() {
@@ -197,21 +197,19 @@
 		},
 		methods: {
 
-
-			//获取用户列表
-			getUser: function() {
+	//列表数据
+			getData() {
+				let self = this;
 				let para = {
 
 				};
-				this.loading = true;
-
 				getUserList(para).then((res) => {
-					this.users = res;
-					console.log(res)
+					console.log(res.data)
+				self.tableData = res.data.list;
+					
 				});
+
 			},
-
-
 
 			//性别显示转换
 			formatSex: function(row, column) {
@@ -222,20 +220,7 @@
 				this.cur_page = val;
 				this.getData();
 			},
-			//列表数据
-			getData() {
-				let self = this;
-				if (process.env.NODE_ENV === 'development') {
-					self.url = '/ms/table/list';
-				};
-				self.$axios.post(self.url, {
-					page: self.cur_page
-				}).then((res) => {
-					self.tableData = res.data.list;
-
-					console.log(JSON.stringify(res.data));
-				})
-			},
+		
 			//搜索
 			search() {
 				this.is_search = true;
